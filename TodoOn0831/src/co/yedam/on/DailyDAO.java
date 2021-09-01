@@ -43,15 +43,14 @@ public class DailyDAO extends DAO {
             pstmt.setString(4, dvo.memoContentD);
             
             rowCount = pstmt.executeUpdate();
-            System.out.println(rowCount);
+            
             
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             dao.disconnect();
         }
-        
-		System.out.println("입력완료.");
+        System.out.println(rowCount+"건 입력완료");
 	}
 	
 	

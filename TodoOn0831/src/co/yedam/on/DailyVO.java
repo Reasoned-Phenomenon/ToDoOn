@@ -11,6 +11,7 @@ public class DailyVO {
 	
 	
 	
+	
 	int noD;
 	String inputDateD;
 	String expiryDateD;
@@ -60,10 +61,13 @@ public class DailyVO {
 	public void setMemoContentD(String memoContentD) {
 		this.memoContentD = memoContentD;
 	}
+	
 	@Override
 	public String toString() {
-		return "일일 [" + listD + "]";
+		return "일일 [" + noD + "-" + memoIndexD + "]";
 	}
+	
+	
 	
 	
 	
