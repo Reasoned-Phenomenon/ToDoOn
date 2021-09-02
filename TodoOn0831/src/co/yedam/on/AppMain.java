@@ -8,7 +8,6 @@ public class AppMain implements MENU {
 	
 	DAO dao = new DAO();
 	DailyDAO ddao = new DailyDAO();
-	FinishDAO fdao = new FinishDAO();
 	ToDoOn tdo = new ToDoOn();
 	
 	Scanner sc = new Scanner(System.in);
@@ -34,7 +33,7 @@ public class AppMain implements MENU {
 		do {
 		System.out.println();
 		System.out.println("원하시는 메뉴를 선택하세요.");
-		System.out.println("1.입력 2.조회 3.수정 4.삭제 5.종료");
+		System.out.println("1.입력 2.조회 3.수정 4.삭제 5.완료 6.종료");
 		System.out.print("선택>>");
 			
 		choice = Integer.parseInt(sc.nextLine());
@@ -48,7 +47,7 @@ public class AppMain implements MENU {
 		case MENU.EXIT: exit();
 		}
 		} 
-		while(choice != 5);
+		while(choice != 6);
 	}
 	
 	
@@ -101,7 +100,7 @@ public class AppMain implements MENU {
 		
 		tdo.showAll(); // search을 할지 고민
 		
-		System.out.println("수정하고싶은 인덱스를 선택하세요.");
+		System.out.println("삭제하고싶은 인덱스를 선택하세요.");
 		System.out.println("1.일일 2.주간 3.월간 4.연간 5.버킷");
 		
 		System.out.print("선택>>");
@@ -117,7 +116,8 @@ public class AppMain implements MENU {
 	}
 	
 	public void check () {
-		fdao.check();
+		
+		tdo.check(); //체크,취소
 	}
 	
 	
