@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="co.yedam.on.AppMain" project="TodoOn" file="/TodoOn/src/co/yedam/on/AppMain.java" 
+  <class id="1" language="java" name="co.yedam.on.AppMain" project="ToDoOn" file="/ToDoOn/src/co/yedam/on/AppMain.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="484" y="230"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="co.yedam.on.DailyDAO" project="TodoOn" 
-    file="/TodoOn/src/co/yedam/on/DailyDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="co.yedam.on.DailyDAO" project="ToDoOn" 
+    file="/ToDoOn/src/co/yedam/on/DailyDAO.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="285" y="330"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -19,7 +19,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="co.yedam.on.DailyVO" project="TodoOn" file="/TodoOn/src/co/yedam/on/DailyVO.java" 
+  <class id="3" language="java" name="co.yedam.on.DailyVO" project="ToDoOn" file="/ToDoOn/src/co/yedam/on/DailyVO.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="269" y="-24"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -28,7 +28,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="4" language="java" name="co.yedam.on.MENU" project="TodoOn" file="/TodoOn/src/co/yedam/on/MENU.java" 
+  <interface id="4" language="java" name="co.yedam.on.MENU" project="ToDoOn" file="/ToDoOn/src/co/yedam/on/MENU.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="490" y="-111"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -37,7 +37,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="5" language="java" name="co.yedam.on.ToDoOn" project="TodoOn" file="/TodoOn/src/co/yedam/on/ToDoOn.java" 
+  <class id="5" language="java" name="co.yedam.on.ToDoOn" project="ToDoOn" file="/ToDoOn/src/co/yedam/on/ToDoOn.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="271" y="693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -46,7 +46,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="co.yedam.on.DAO" project="TodoOn" file="/TodoOn/src/co/yedam/on/DAO.java" 
+  <class id="6" language="java" name="co.yedam.on.DAO" project="ToDoOn" file="/ToDoOn/src/co/yedam/on/DAO.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="79" y="493"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -57,79 +57,111 @@
   </class>  
   <association id="7">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="8" name="tdo"/>      
-      <multiplicity id="9" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="10">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="11" name="dvo"/>      
-      <multiplicity id="12" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="13">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="14" name="dao"/>      
-      <multiplicity id="15" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="16">    
-    <bendpoint x="539" y="4"/>    
-    <bendpoint x="539" y="413"/>    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="17" name="ddao"/>      
-      <multiplicity id="18" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="19">    
-    <bendpoint x="518" y="4"/>    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="20" name="dao"/>      
-      <multiplicity id="21" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="22">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <realization id="23">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <association id="24">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="25" name="main"/>      
-      <multiplicity id="26" minimum="0" maximum="1"/>    
+      <attribute id="8" name="main">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="9" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="27">    
-    <bendpoint x="348" y="413"/>    
-    <bendpoint x="348" y="678"/>    
+  <realization id="10">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="11">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="12" name="dao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="13" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="14">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="28" name="dvo"/>      
-      <multiplicity id="29" minimum="0" maximum="1"/>    
+      <attribute id="15" name="dao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="17">    
+    <bendpoint x="518" y="4"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="18" name="dao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="19" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="21" name="dvo">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="22" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="30">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="31" name="dao"/>      
-      <multiplicity id="32" minimum="0" maximum="1"/>    
+  <association id="23">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="24" name="tdo">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="25" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="26">    
+    <bendpoint x="539" y="4"/>    
+    <bendpoint x="539" y="413"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="27" name="ddao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="28" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <association id="30">    
+    <bendpoint x="348" y="413"/>    
+    <bendpoint x="348" y="678"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="31" name="dvo">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
