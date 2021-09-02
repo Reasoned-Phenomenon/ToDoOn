@@ -54,14 +54,87 @@ public class DailyDAO extends DAO {
 	}
 	
 	
+	
+	
 	//인덱스로 검색->수정
 	public void updateD () {
 		
+		System.out.print("번호>>");
+		String beforeNo = sc.nextLine();
+		
+		System.out.println("수정하고 싶은 곳을 선택하세요.");
+		System.out.println("1.인덱스 2.내용 3.만기날짜(YY/MM/DD)");
+		System.out.print("선택>>");
+		
+		int choiceC = Integer.parseInt(sc.nextLine());
+		String beforeColumn = null;
+		
+		switch (choiceC) {
+		case 1: beforeColumn = "memo_index"; break;
+		case 2: beforeColumn = "memo_content"; break;
+		case 3: beforeColumn = "expiry_date"; break;
+		} 
+		
+		System.out.println("수정하세요.");
+		System.out.print("입력>>");
+		String afterColumn = sc.nextLine();
+		
+		//연결
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        int result = 0;
+        String sqld = "";
+        
+        try {
+            con=dao.connect();
+            sqld = "UPDATE daily SET "+  beforeColumn + " = ? WHERE NO = ? ";
+            pstmt = con.prepareStatement(sqld);
+            pstmt.setString(1, afterColumn);
+            pstmt.setString(2, beforeNo);
+            
+            result = pstmt.executeUpdate();
+            con.commit();
+            System.out.println(result+"건 수정 완료됐습니다.");
+            
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                dao.disconnect();
+            }
+            
 	}
 	
-	//인덱스로 검색->수정
+	
+	
+	
+	//인덱스로 검색->삭제
 	public void deleteD () {
 		
+		System.out.print("번호>>");
+		String no = sc.nextLine();
+		
+		//연결
+		int rowCount = 0;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        String sql = "";
+ 
+        try {
+            con=dao.connect();
+            sql = "DELETE FROM daily WHERE NO = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, no);
+            rowCount = pstmt.executeUpdate();
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            dao.disconnect();
+        }
+        System.out.println(rowCount+"건 삭제완료");
+	
+
 	}
 	
 	

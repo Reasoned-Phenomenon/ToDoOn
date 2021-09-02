@@ -93,7 +93,7 @@ public class ToDoOn {
 	
 	
 	public void search () {
-		
+		System.out.println();
 		System.out.println("검색하고싶은 인덱스 또는 내용을 입력하세요.");
 		System.out.print("인덱스 또는 내용>>");
 		String look = sc.nextLine();
@@ -152,7 +152,7 @@ public class ToDoOn {
         
 	}
 
-	
+//"찾으시는 내용이 없습니다." << 넣어야하는데	
 	
 	
 	
