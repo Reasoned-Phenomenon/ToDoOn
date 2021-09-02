@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class AppMain implements MENU {
 
+	//깃 pull 테스트
 	static AppMain main = new AppMain();
 	
 	DAO dao = new DAO();
