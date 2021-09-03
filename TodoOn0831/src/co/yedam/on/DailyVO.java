@@ -7,8 +7,9 @@ import java.util.List;
 
 public class DailyVO {
 
-	List<String> listD = new ArrayList<>();
+	SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd");
 	
+	List<String> listD = new ArrayList<>();
 	
 	
 	
@@ -18,8 +19,6 @@ public class DailyVO {
 	String finishDateD;
 	String memoIndexD;
 	String memoContentD;
-	
-	SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd");
 	
 	
 	
@@ -62,10 +61,10 @@ public class DailyVO {
 		this.memoContentD = memoContentD;
 	}
 	
-	@Override
-	public String toString() {
-		return "일일 [" + noD + "-" + memoIndexD + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "일일 [" + noD + "-" + memoIndexD + "]";
+//	}
 	
 	
 	

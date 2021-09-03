@@ -6,15 +6,15 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class DailyDAO extends DAO {
+public class WeeklyDAO extends DAO {
 
 	Scanner sc = new Scanner(System.in);
-	DailyVO dvo = new DailyVO();
+	WeeklyVO wvo = new WeeklyVO();
 	DAO dao = new DAO();
 	
 	//일일
 	//no. / 입력날짜 / 만기날짜 / 완료날짜 / 인덱스 / 내용
-	public void insertD () {
+	public void insertW () {
 		System.out.println("다음을 입력하세요.");
 		System.out.print("인덱스>>");
 		String index = sc.nextLine();
@@ -25,9 +25,9 @@ public class DailyDAO extends DAO {
 		System.out.print("만기날짜(YY/MM/DD)>>");
 		String expireDate = sc.nextLine();
 		
-		dvo.setMemoIndexD(index);
-		dvo.setMemoContentD(content);
-		dvo.setExpiryDateD(expireDate);
+		wvo.setMemoIndexW(index);
+		wvo.setMemoContentW(content);
+		wvo.setExpiryDateW(expireDate);
 		
 		//연결
 		int rowCount = 0;
@@ -37,12 +37,12 @@ public class DailyDAO extends DAO {
  
         try {
             con=dao.connect();
-            sql = "INSERT INTO daily(no,input_Date,expiry_Date,finish_Date,memo_Index,memo_Content,memo_check) " + " VALUES(MEMO_SEQ.NEXTVAL,?,?,null,?,?,0)";
+            sql = "INSERT INTO weekly(no,input_Date,expiry_Date,finish_Date,memo_Index,memo_Content,memo_check) " + " VALUES(MEMO_SEQ.NEXTVAL,?,?,null,?,?,0)";
             pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, dvo.getInputDateD());
-            pstmt.setString(2, dvo.getExpiryDateD());
-            pstmt.setString(3, dvo.memoIndexD);
-            pstmt.setString(4, dvo.memoContentD);
+            pstmt.setString(1, wvo.getInputDateW());
+            pstmt.setString(2, wvo.getExpiryDateW());
+            pstmt.setString(3, wvo.memoIndexW);
+            pstmt.setString(4, wvo.memoContentW);
             
             rowCount = pstmt.executeUpdate();
             
@@ -59,7 +59,7 @@ public class DailyDAO extends DAO {
 	
 	
 	//인덱스로 검색->수정
-	public void updateD () {
+	public void updateW () {
 		
 		System.out.print("번호>>");
 		String beforeNo = sc.nextLine();
@@ -89,7 +89,7 @@ public class DailyDAO extends DAO {
         
         try {
             con=dao.connect();
-            sqld = "UPDATE daily SET "+  beforeColumn + " = ? WHERE NO = ? ";
+            sqld = "UPDATE weekly SET "+  beforeColumn + " = ? WHERE NO = ? ";
             pstmt = con.prepareStatement(sqld);
             pstmt.setString(1, afterColumn);
             pstmt.setString(2, beforeNo);
@@ -108,7 +108,7 @@ public class DailyDAO extends DAO {
 	
 	
 	//인덱스로 검색->삭제
-	public void deleteD () {
+	public void deleteW () {
 		
 		System.out.print("번호>>");
 		String no = sc.nextLine();
@@ -121,7 +121,7 @@ public class DailyDAO extends DAO {
  
         try {
             con=dao.connect();
-            sql = "DELETE FROM daily WHERE NO = ?";
+            sql = "DELETE FROM weekly WHERE NO = ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, no);
             rowCount = pstmt.executeUpdate();
@@ -139,31 +139,31 @@ public class DailyDAO extends DAO {
 	
 	
 	
-	//Forward Show Daily
-	public void checkFSD () {
+	//Forward Show Weekly
+	public void checkFSW () {
 	// 연결
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		dvo.listD = new ArrayList<>();
+		wvo.listW = new ArrayList<>();
 		ResultSet rs = null;
 		String sql = "";
 
 		try {
 			con = dao.connect();
 			// 일일
-			sql = "SELECT NO, MEMO_INDEX FROM daily WHERE( memo_check = 0 ) ";
+			sql = "SELECT NO, MEMO_INDEX FROM weekly WHERE( memo_check = 0 ) ";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				dvo.listD.add(Integer.toString(rs.getInt("NO")));
-            	dvo.listD.add(rs.getString("MEMO_INDEX"));
+				wvo.listW.add(Integer.toString(rs.getInt("NO")));
+            	wvo.listW.add(rs.getString("MEMO_INDEX"));
 			}
 			
-			 for( int i = 0 ; i < (dvo.listD.size())/2 ; i++ ) {
+			 for( int i = 0 ; i < (wvo.listW.size())/2 ; i++ ) {
 		        	int a = 2*i;
 		        	int b = 2*i+1;
-		        	System.out.println("일일:"+dvo.listD.get(a)+"-"+dvo.listD.get(b));
+		        	System.out.println("일일:"+wvo.listW.get(a)+"-"+wvo.listW.get(b));
 			
 			 }
 		}
@@ -174,31 +174,31 @@ public class DailyDAO extends DAO {
 		}
 }
 	
-	//Backward Show Daily
-	public void checkBSD () {
+	//Backward Show Weekly
+	public void checkBSW () {
 		// 연결
 			Connection con = null;
 			PreparedStatement pstmt = null;
-			dvo.listD = new ArrayList<>();
+			wvo.listW = new ArrayList<>();
 			ResultSet rs = null;
 			String sql = "";
 
 			try {
 				con = dao.connect();
 				// 일일
-				sql = "SELECT NO, MEMO_INDEX FROM daily WHERE( memo_check = 1 ) ";
+				sql = "SELECT NO, MEMO_INDEX FROM weekly WHERE( memo_check = 1 ) ";
 				pstmt = con.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				
 				while (rs.next()) {
-					dvo.listD.add(Integer.toString(rs.getInt("NO")));
-	            	dvo.listD.add(rs.getString("MEMO_INDEX"));
+					wvo.listW.add(Integer.toString(rs.getInt("NO")));
+	            	wvo.listW.add(rs.getString("MEMO_INDEX"));
 				}
 				
-				 for( int i = 0 ; i < (dvo.listD.size())/2 ; i++ ) {
+				 for( int i = 0 ; i < (wvo.listW.size())/2 ; i++ ) {
 			        	int a = 2*i;
 			        	int b = 2*i+1;
-			        	System.out.println("일일:"+dvo.listD.get(a)+"-"+dvo.listD.get(b));
+			        	System.out.println("일일:"+wvo.listW.get(a)+"-"+wvo.listW.get(b));
 				
 				 }
 			}
@@ -212,8 +212,8 @@ public class DailyDAO extends DAO {
 	
 	
 	
-	//Forward Daily
-	public void checkFD () {
+	//Forward Weekly
+	public void checkFW () {
 		
 		System.out.println("완료하실 인덱스를 선택해주세요.");
 		System.out.print("번호>>");
@@ -227,7 +227,7 @@ public class DailyDAO extends DAO {
         
         try {
             con=dao.connect();
-            sqld = "UPDATE daily SET memo_check = 1 WHERE NO = ? ";
+            sqld = "UPDATE weekly SET memo_check = 1 WHERE NO = ? ";
             pstmt = con.prepareStatement(sqld);
             pstmt.setString(1, beforeNo);
             
@@ -243,8 +243,8 @@ public class DailyDAO extends DAO {
             
 	}
 	
-	//backward Show Daily
-	public void checkBD () {
+	//backward Show Weekly
+	public void checkBW () {
 		
 		System.out.println("되돌리실 인덱스를 선택해주세요.");
 		System.out.print("번호>>");
@@ -258,7 +258,7 @@ public class DailyDAO extends DAO {
         
         try {
             con=dao.connect();
-            sqld = "UPDATE daily SET memo_check = 0 WHERE NO = ? ";
+            sqld = "UPDATE weekly SET memo_check = 0 WHERE NO = ? ";
             pstmt = con.prepareStatement(sqld);
             pstmt.setString(1, beforeNo);
             

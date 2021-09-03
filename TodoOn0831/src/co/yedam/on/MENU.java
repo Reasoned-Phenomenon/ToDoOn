@@ -9,7 +9,10 @@ public interface MENU {
 	int CHECK = 5;
 	int EXIT = 6;
 	
-	
-	
+	int DAILY = 1;
+	int WEEKLY = 2;
+	int MONTHLY = 3;
+	int YEARLY = 4;
+	int BUCKET = 5;
 	
 }

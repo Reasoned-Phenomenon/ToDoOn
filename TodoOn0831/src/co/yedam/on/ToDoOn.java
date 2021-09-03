@@ -16,9 +16,21 @@ public class ToDoOn {
 	List<String> tdo = new ArrayList<>();
 	
 	DAO dao = new DAO();
+	
 	DailyVO dvo = new DailyVO();
 	DailyDAO ddao = new DailyDAO();
 	
+	WeeklyVO wvo = new WeeklyVO();
+	WeeklyDAO wdao = new WeeklyDAO();
+	
+	MonthlyVO mvo = new MonthlyVO();
+	MonthlyDAO mdao = new MonthlyDAO();
+	
+	YearlyVO yvo = new YearlyVO();
+	YearlyDAO ydao = new YearlyDAO();
+	
+	BucketVO bvo = new BucketVO();
+	BucketDAO bdao = new BucketDAO();
 	
 	int no;
 	String inputDate;
@@ -51,10 +63,10 @@ public class ToDoOn {
 		
 		ResultSet rs = null;
 		String sqld = "";
-//	        String sqlw = "";
-//	        String sqlm = "";
-//	        String sqly = "";
-//	        String sqlb = "";
+        String sqlw = "";
+        String sqlm = "";
+        String sqly = "";
+        String sqlb = "";
 
 		Date time = new Date();
 		String now = format.format(time);
