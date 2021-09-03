@@ -32,8 +32,6 @@ public class ToDoOn implements MENU{
 	BucketVO bvo = new BucketVO();
 	BucketDAO bdao = new BucketDAO();
 
-	ToDoOn () {}
-
 	// 오늘까지 남아있는 모든 인덱스 보여주기
 	public void showAll() {
 		
@@ -324,6 +322,6 @@ public class ToDoOn implements MENU{
 		case MENU.BUCKET: bdao.checkBB(); break;
 		
 		}
-		}
+	}
 	
 }
