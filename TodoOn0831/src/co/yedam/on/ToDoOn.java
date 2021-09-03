@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class ToDoOn {
+public class ToDoOn implements MENU{
 	
 	SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd");
 	Scanner sc = new Scanner(System.in);
@@ -31,29 +31,9 @@ public class ToDoOn {
 	
 	BucketVO bvo = new BucketVO();
 	BucketDAO bdao = new BucketDAO();
-	
-	int no;
-	String inputDate;
-	String expiryDate;
-	String finishDate;
-	String memoIndex;
-	String memoContent;
-	
-	String daily;
-	String weekly;
-	String monthly;
-	String yearly;
-	String bucket;
-	
-	boolean finish;
-	
+
 	ToDoOn () {}
 
-	//getter setter
-	
-	
-	
-	
 	// 오늘까지 남아있는 모든 인덱스 보여주기
 	public void showAll() {
 		
@@ -74,6 +54,7 @@ public class ToDoOn {
 		
 		try {
 			con = dao.connect();
+			
 			// 일일
 			sqld = "SELECT NO, MEMO_INDEX FROM daily WHERE( expiry_date > TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
 			pstmt = con.prepareStatement(sqld);
@@ -86,18 +67,55 @@ public class ToDoOn {
 	        	System.out.println("일일:"+ dvo.getNoD() + "-" + dvo.getMemoIndexD()+" ");
 			}
 			
-			
-		}
-			
 			// 주간
+			sqlw = "SELECT NO, MEMO_INDEX FROM weekly WHERE( expiry_date > TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
+			pstmt = con.prepareStatement(sqlw);
+			pstmt.setString(1, now);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				wvo.setNoW(rs.getInt("NO"));
+	        	wvo.setMemoIndexW(rs.getString("MEMO_INDEX"));
+	        	System.out.println("주간:"+ wvo.getNoW() + "-" + wvo.getMemoIndexW()+" ");
+			}
 
 			// 월간
-
+			sqlm = "SELECT NO, MEMO_INDEX FROM monthly WHERE( expiry_date > TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
+			pstmt = con.prepareStatement(sqlm);
+			pstmt.setString(1, now);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				mvo.setNoM(rs.getInt("NO"));
+	        	mvo.setMemoIndexM(rs.getString("MEMO_INDEX"));
+	        	System.out.println("월간:"+ mvo.getNoM() + "-" + mvo.getMemoIndexM()+" ");
+			}
+			
 			// 연간
-
+			sqly = "SELECT NO, MEMO_INDEX FROM yearly WHERE( expiry_date > TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
+			pstmt = con.prepareStatement(sqly);
+			pstmt.setString(1, now);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				yvo.setNoY(rs.getInt("NO"));
+	        	yvo.setMemoIndexY(rs.getString("MEMO_INDEX"));
+	        	System.out.println("연간:"+ yvo.getNoY() + "-" + yvo.getMemoIndexY()+" ");
+			}
+			
 			// 버킷
-
-		 catch (Exception e) {
+			sqlb = "SELECT NO, MEMO_INDEX FROM bucket WHERE( expiry_date > TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
+			pstmt = con.prepareStatement(sqlb);
+			pstmt.setString(1, now);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				bvo.setNoB(rs.getInt("NO"));
+	        	bvo.setMemoIndexB(rs.getString("MEMO_INDEX"));
+	        	System.out.println("버킷:"+ bvo.getNoB() + "-" + bvo.getMemoIndexB()+" ");
+			}
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			dao.disconnect();
@@ -105,23 +123,31 @@ public class ToDoOn {
 
 	}
 	
-	
+	//조회-검색(인덱스,내용)
 	public void search () {
 		System.out.println();
 		System.out.println("검색하고싶은 인덱스 또는 내용을 입력하세요.");
 		System.out.print("인덱스 또는 내용>>");
 		String look = sc.nextLine();
-		dvo.listD = new ArrayList<>();
+		
 		//연결
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         
         String sqld = "";
+        String sqlw = "";
+        String sqlm = "";
+        String sqly = "";
+        String sqlb = "";
+        
         
         //일일 테이블에서 검색내용 출력
         try {
             con=dao.connect();
+            
+            //일일
+            dvo.listD = new ArrayList<>();
             sqld = "SELECT NO, MEMO_INDEX FROM daily WHERE(( MEMO_INDEX LIKE ? ) OR ( MEMO_CONTENT LIKE ?))";
             pstmt = con.prepareStatement(sqld);
             pstmt.setString(1, "%"+look+"%");
@@ -133,68 +159,138 @@ public class ToDoOn {
             	dvo.listD.add(Integer.toString(rs.getInt("NO")));
             	dvo.listD.add(rs.getString("MEMO_INDEX"));
 			}
+            
+            for( int i = 0 ; i < (dvo.listD.size())/2 ; i++ ) {
+            	int a = 2*i;
+            	int b = 2*i+1;
+            	System.out.println("일일:"+dvo.listD.get(a)+"-"+dvo.listD.get(b));
+            }
+            
+            //주간
+            wvo.listW = new ArrayList<>();
+            sqlw = "SELECT NO, MEMO_INDEX FROM weekly WHERE(( MEMO_INDEX LIKE ? ) OR ( MEMO_CONTENT LIKE ?))";
+            pstmt = con.prepareStatement(sqlw);
+            pstmt.setString(1, "%"+look+"%");
+            pstmt.setString(2, "%"+look+"%");
+            
+            rs = pstmt.executeQuery();
+            
+            while (rs.next()) {
+            	wvo.listW.add(Integer.toString(rs.getInt("NO")));
+            	wvo.listW.add(rs.getString("MEMO_INDEX"));
+			}
+            
+            for( int i = 0 ; i < (wvo.listW.size())/2 ; i++ ) {
+            	int a = 2*i;
+            	int b = 2*i+1;
+            	System.out.println("주간:"+wvo.listW.get(a)+"-"+wvo.listW.get(b));
+            }
+            
+            //월간
+            mvo.listM = new ArrayList<>();
+            sqlm = "SELECT NO, MEMO_INDEX FROM monthly WHERE(( MEMO_INDEX LIKE ? ) OR ( MEMO_CONTENT LIKE ?))";
+            pstmt = con.prepareStatement(sqlm);
+            pstmt.setString(1, "%"+look+"%");
+            pstmt.setString(2, "%"+look+"%");
+            
+            rs = pstmt.executeQuery();
+            
+            while (rs.next()) {
+            	mvo.listM.add(Integer.toString(rs.getInt("NO")));
+            	mvo.listM.add(rs.getString("MEMO_INDEX"));
+			}
+            
+            for( int i = 0 ; i < (mvo.listM.size())/2 ; i++ ) {
+            	int a = 2*i;
+            	int b = 2*i+1;
+            	System.out.println("월간:"+mvo.listM.get(a)+"-"+mvo.listM.get(b));
+            }
+            
+            
+            //연간
+            yvo.listY = new ArrayList<>();
+            sqly = "SELECT NO, MEMO_INDEX FROM yearly WHERE(( MEMO_INDEX LIKE ? ) OR ( MEMO_CONTENT LIKE ?))";
+            pstmt = con.prepareStatement(sqly);
+            pstmt.setString(1, "%"+look+"%");
+            pstmt.setString(2, "%"+look+"%");
+            
+            rs = pstmt.executeQuery();
+            
+            while (rs.next()) {
+            	yvo.listY.add(Integer.toString(rs.getInt("NO")));
+            	yvo.listY.add(rs.getString("MEMO_INDEX"));
+			}
+            
+            for( int i = 0 ; i < (yvo.listY.size())/2 ; i++ ) {
+            	int a = 2*i;
+            	int b = 2*i+1;
+            	System.out.println("연간:"+yvo.listY.get(a)+"-"+yvo.listY.get(b));
+            }
+            
+            //버킷
+            bvo.listB = new ArrayList<>();
+            sqlb = "SELECT NO, MEMO_INDEX FROM bucket WHERE(( MEMO_INDEX LIKE ? ) OR ( MEMO_CONTENT LIKE ?))";
+            pstmt = con.prepareStatement(sqlb);
+            pstmt.setString(1, "%"+look+"%");
+            pstmt.setString(2, "%"+look+"%");
+            
+            rs = pstmt.executeQuery();
+            
+            while (rs.next()) {
+            	bvo.listB.add(Integer.toString(rs.getInt("NO")));
+            	bvo.listB.add(rs.getString("MEMO_INDEX"));
+			}
+            
+            for( int i = 0 ; i < (bvo.listB.size())/2 ; i++ ) {
+            	int a = 2*i;
+            	int b = 2*i+1;
+            	System.out.println("버킷:"+bvo.listB.get(a)+"-"+bvo.listB.get(b));
+            }
+            
+            
         	}catch (Exception e) {
                 e.printStackTrace();
             } finally {
             dao.disconnect();
             }
         
-        for( int i = 0 ; i < (dvo.listD.size())/2 ; i++ ) {
-        	int a = 2*i;
-        	int b = 2*i+1;
-        	System.out.println("일일:"+dvo.listD.get(a)+"-"+dvo.listD.get(b));
+        if ((dvo.listD == null)&&(wvo.listW == null)&&(mvo.listM == null)&&(yvo.listY == null)&&(bvo.listB == null)) {
+        	System.out.println("찾으시는 내용이 없습니다.");
+        }
         	
         }
         
-        
-	}
 
-//"찾으시는 내용이 없습니다." << 넣어야하는데	
 	
-	
-	
-	
-	public void check () {
+	//완료하기
+	public void checkF () {
+	//완료하지 않은 인덱스들 보여주기
+		System.out.println("=== 완료되지 않은 인덱스 ===");
+		//일일
+		ddao.checkFSD();
+		//주간
+		wdao.checkFSW();
+		//월간
+		mdao.checkFSM();
+		//연간
+		ydao.checkFSY();
+		//버킷
+		bdao.checkFSB();
 		
-		System.out.println("수행하실 작업을 선택하세요.");
-		System.out.println("1.완료 2.완료취소");
+		System.out.println("완료하실 인덱스를 선택하세요.");
+		System.out.println("1.일일 2.주간 3.월간 4.연간 5.버킷");
 		System.out.print("선택>>");
 		
 		int choice = Integer.parseInt(sc.nextLine());
 		
 		switch (choice) {
-		case 1: checkF(); break;
-		case 2: checkB(); break;	
+		case MENU.DAILY: ddao.checkFD(); break;
+		case MENU.WEEKLY: wdao.checkFW(); break;
+		case MENU.MONTHLY: mdao.checkFM(); break;
+		case MENU.YEARLY: ydao.checkFY(); break;
+		case MENU.BUCKET: bdao.checkFB(); break;
+		
 		}
-	}
-	
-	
-	
-	//완료하기
-	public void checkF () {
-	//완료하지 않은 인덱스들 보여주기
-	System.out.println("=== 완료되지 않은 인덱스 ===");
-	//일일
-	ddao.checkFSD();
-	//주간
-	//월간
-	//연간
-	//버킷
-	
-	System.out.println("완료하실 인덱스를 선택하세요.");
-	System.out.println("1.일일 2.주간 3.월간 4.연간 5.버킷");
-	System.out.print("선택>>");
-	
-	int choice = Integer.parseInt(sc.nextLine());
-	
-	switch (choice) {
-	case 1: ddao.checkFD(); break;
-	case 2: break;
-	case 3: break;
-	case 4: break;
-	case 5: break;
-	
-	}
 	}
 	
 	
@@ -206,9 +302,14 @@ public class ToDoOn {
 		//일일
 		ddao.checkBSD();
 		//주간
+		wdao.checkBSW();
 		//월간
+		mdao.checkBSM();
 		//연간
+		ydao.checkBSY();
 		//버킷
+		bdao.checkBSB();
+		
 		System.out.println("취소하실 인덱스를 선택하세요.");
 		System.out.println("1.일일 2.주간 3.월간 4.연간 5.버킷");
 		System.out.print("선택>>");
@@ -216,11 +317,11 @@ public class ToDoOn {
 		int choice = Integer.parseInt(sc.nextLine());
 		
 		switch (choice) {
-		case 1: ddao.checkBD(); break;
-		case 2: break;
-		case 3: break;
-		case 4: break;
-		case 5: break;
+		case MENU.DAILY: ddao.checkBD(); break;
+		case MENU.WEEKLY: wdao.checkBW(); break;
+		case MENU.MONTHLY: mdao.checkBM(); break;
+		case MENU.YEARLY: ydao.checkBY(); break;
+		case MENU.BUCKET: bdao.checkBB(); break;
 		
 		}
 		}

@@ -23,12 +23,12 @@ public class AppMain implements MENU {
 	
 	//시작 메서드
 	public void start() {
-		System.out.println("안녕하세요.");
-		System.out.println("===남아있는 인덱스===");
+		System.out.println("안녕하세요. ToDoOn입니다.");
+		System.out.println("===============남아있는 인덱스==============");
 		
 		tdo.showAll();
 		
-		System.out.println("=== === === === ===");
+		System.out.println("========================================");
 		
 		int choice = 0;
 		
@@ -118,7 +118,17 @@ public class AppMain implements MENU {
 	
 	//체크 - 완료, 취소 메서드
 	public void check () {
-		tdo.check(); 
+		
+		System.out.println("수행하실 작업을 선택하세요.");
+		System.out.println("1.완료 2.완료취소");
+		System.out.print("선택>>");
+		
+		int choice = Integer.parseInt(sc.nextLine());
+		
+		switch (choice) {
+		case 1: tdo.checkF(); break;
+		case 2: tdo.checkB(); break;	
+		}
 	}
 	
 	

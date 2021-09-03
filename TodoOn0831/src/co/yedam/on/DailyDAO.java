@@ -139,7 +139,7 @@ public class DailyDAO extends DAO {
 	
 	
 	
-	//Forward Show Daily
+	//Forward Show Daily - 미완 인덱스 보여줌
 	public void checkFSD () {
 	// 연결
 		Connection con = null;
@@ -174,7 +174,7 @@ public class DailyDAO extends DAO {
 		}
 }
 	
-	//Backward Show Daily
+	//Backward Show Daily - 완료 인덱스 보여줌
 	public void checkBSD () {
 		// 연결
 			Connection con = null;
