@@ -163,7 +163,7 @@ public class WeeklyDAO extends DAO {
 			 for( int i = 0 ; i < (wvo.listW.size())/2 ; i++ ) {
 		        	int a = 2*i;
 		        	int b = 2*i+1;
-		        	System.out.println("일일:"+wvo.listW.get(a)+"-"+wvo.listW.get(b));
+		        	System.out.print("[주간:"+wvo.listW.get(a)+"-"+wvo.listW.get(b)+"]\t");
 			
 			 }
 		}
@@ -198,7 +198,7 @@ public class WeeklyDAO extends DAO {
 				 for( int i = 0 ; i < (wvo.listW.size())/2 ; i++ ) {
 			        	int a = 2*i;
 			        	int b = 2*i+1;
-			        	System.out.println("일일:"+wvo.listW.get(a)+"-"+wvo.listW.get(b));
+			        	System.out.print("[주간:"+wvo.listW.get(a)+"-"+wvo.listW.get(b)+"]\t");
 				
 				 }
 			}

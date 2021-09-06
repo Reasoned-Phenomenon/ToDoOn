@@ -62,8 +62,8 @@ public class ToDoOn implements MENU{
 			while (rs.next()) {
 				dvo.setNoD(rs.getInt("NO"));
 	        	dvo.setMemoIndexD(rs.getString("MEMO_INDEX"));
-	        	System.out.println("일일:"+ dvo.getNoD() + "-" + dvo.getMemoIndexD()+" ");
-			}
+	        	System.out.print("[일일:"+ dvo.getNoD() + "-" + dvo.getMemoIndexD()+"]\t");
+			}System.out.println();
 			
 			// 주간
 			sqlw = "SELECT NO, MEMO_INDEX FROM weekly WHERE( expiry_date > TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
@@ -74,8 +74,8 @@ public class ToDoOn implements MENU{
 			while (rs.next()) {
 				wvo.setNoW(rs.getInt("NO"));
 	        	wvo.setMemoIndexW(rs.getString("MEMO_INDEX"));
-	        	System.out.println("주간:"+ wvo.getNoW() + "-" + wvo.getMemoIndexW()+" ");
-			}
+	        	System.out.print("[주간:"+ wvo.getNoW() + "-" + wvo.getMemoIndexW()+"]\t");
+			}System.out.println();
 
 			// 월간
 			sqlm = "SELECT NO, MEMO_INDEX FROM monthly WHERE( expiry_date > TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
@@ -86,8 +86,8 @@ public class ToDoOn implements MENU{
 			while (rs.next()) {
 				mvo.setNoM(rs.getInt("NO"));
 	        	mvo.setMemoIndexM(rs.getString("MEMO_INDEX"));
-	        	System.out.println("월간:"+ mvo.getNoM() + "-" + mvo.getMemoIndexM()+" ");
-			}
+	        	System.out.print("[월간:"+ mvo.getNoM() + "-" + mvo.getMemoIndexM()+"]\t");
+			}System.out.println();
 			
 			// 연간
 			sqly = "SELECT NO, MEMO_INDEX FROM yearly WHERE( expiry_date > TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
@@ -98,8 +98,8 @@ public class ToDoOn implements MENU{
 			while (rs.next()) {
 				yvo.setNoY(rs.getInt("NO"));
 	        	yvo.setMemoIndexY(rs.getString("MEMO_INDEX"));
-	        	System.out.println("연간:"+ yvo.getNoY() + "-" + yvo.getMemoIndexY()+" ");
-			}
+	        	System.out.print("[연간:"+ yvo.getNoY() + "-" + yvo.getMemoIndexY()+"]\t");
+			}System.out.println();
 			
 			// 버킷
 			sqlb = "SELECT NO, MEMO_INDEX FROM bucket WHERE( expiry_date > TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
@@ -110,8 +110,8 @@ public class ToDoOn implements MENU{
 			while (rs.next()) {
 				bvo.setNoB(rs.getInt("NO"));
 	        	bvo.setMemoIndexB(rs.getString("MEMO_INDEX"));
-	        	System.out.println("버킷:"+ bvo.getNoB() + "-" + bvo.getMemoIndexB()+" ");
-			}
+	        	System.out.print("[버킷:"+ bvo.getNoB() + "-" + bvo.getMemoIndexB()+"]\t");
+			}System.out.println();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -161,7 +161,7 @@ public class ToDoOn implements MENU{
             for( int i = 0 ; i < (dvo.listD.size())/2 ; i++ ) {
             	int a = 2*i;
             	int b = 2*i+1;
-            	System.out.println("일일:"+dvo.listD.get(a)+"-"+dvo.listD.get(b));
+            	System.out.println("[일일:"+dvo.listD.get(a)+"-"+dvo.listD.get(b)+"]");
             }
             
             //주간
@@ -181,7 +181,7 @@ public class ToDoOn implements MENU{
             for( int i = 0 ; i < (wvo.listW.size())/2 ; i++ ) {
             	int a = 2*i;
             	int b = 2*i+1;
-            	System.out.println("주간:"+wvo.listW.get(a)+"-"+wvo.listW.get(b));
+            	System.out.println("[주간:"+wvo.listW.get(a)+"-"+wvo.listW.get(b)+"]");
             }
             
             //월간
@@ -201,7 +201,7 @@ public class ToDoOn implements MENU{
             for( int i = 0 ; i < (mvo.listM.size())/2 ; i++ ) {
             	int a = 2*i;
             	int b = 2*i+1;
-            	System.out.println("월간:"+mvo.listM.get(a)+"-"+mvo.listM.get(b));
+            	System.out.println("[월간:"+mvo.listM.get(a)+"-"+mvo.listM.get(b)+"]");
             }
             
             
@@ -222,7 +222,7 @@ public class ToDoOn implements MENU{
             for( int i = 0 ; i < (yvo.listY.size())/2 ; i++ ) {
             	int a = 2*i;
             	int b = 2*i+1;
-            	System.out.println("연간:"+yvo.listY.get(a)+"-"+yvo.listY.get(b));
+            	System.out.println("[연간:"+yvo.listY.get(a)+"-"+yvo.listY.get(b)+"]");
             }
             
             //버킷
@@ -242,7 +242,7 @@ public class ToDoOn implements MENU{
             for( int i = 0 ; i < (bvo.listB.size())/2 ; i++ ) {
             	int a = 2*i;
             	int b = 2*i+1;
-            	System.out.println("버킷:"+bvo.listB.get(a)+"-"+bvo.listB.get(b));
+            	System.out.println("[버킷:"+bvo.listB.get(a)+"-"+bvo.listB.get(b)+"]");
             }
             
             
@@ -252,7 +252,7 @@ public class ToDoOn implements MENU{
             dao.disconnect();
             }
         
-        if ((dvo.listD == null)&&(wvo.listW == null)&&(mvo.listM == null)&&(yvo.listY == null)&&(bvo.listB == null)) {
+        if ((dvo.listD.isEmpty())&&(wvo.listW.isEmpty())&&(mvo.listM.isEmpty())&&(yvo.listY.isEmpty())&&(bvo.listB.isEmpty())) {
         	System.out.println("찾으시는 내용이 없습니다.");
         }
         	
@@ -263,32 +263,48 @@ public class ToDoOn implements MENU{
 	//완료하기
 	public void checkF () {
 	//완료하지 않은 인덱스들 보여주기
-		System.out.println("=== 완료되지 않은 인덱스 ===");
+		System.out.println();
+		System.out.println("=============== 완료되지 않은 인덱스 ===============");
 		//일일
 		ddao.checkFSD();
+		System.out.println();
 		//주간
 		wdao.checkFSW();
+		System.out.println();
 		//월간
 		mdao.checkFSM();
+		System.out.println();
 		//연간
 		ydao.checkFSY();
+		System.out.println();
 		//버킷
 		bdao.checkFSB();
-		
-		System.out.println("완료하실 인덱스를 선택하세요.");
-		System.out.println("1.일일 2.주간 3.월간 4.연간 5.버킷");
-		System.out.print("선택>>");
-		
-		int choice = Integer.parseInt(sc.nextLine());
-		
-		switch (choice) {
-		case MENU.DAILY: ddao.checkFD(); break;
-		case MENU.WEEKLY: wdao.checkFW(); break;
-		case MENU.MONTHLY: mdao.checkFM(); break;
-		case MENU.YEARLY: ydao.checkFY(); break;
-		case MENU.BUCKET: bdao.checkFB(); break;
-		
+		System.out.println();
+		//완료되지 않은 인덱스가 없는 경우
+		if ((ddao.dvo.listD.isEmpty())&&(wdao.wvo.listW.isEmpty())&&(mdao.mvo.listM.isEmpty())&&(ydao.yvo.listY.isEmpty())&&(bdao.bvo.listB.isEmpty())) {
+			System.out.println("========================================");
+			System.out.println("찾으시는 내용이 없습니다.");
+			System.out.println();
+			System.out.println("========================================");
+			
+		} else {
+			System.out.println("========================================");
+			System.out.println("완료하실 인덱스를 선택하세요.");
+			System.out.println("1.일일 2.주간 3.월간 4.연간 5.버킷");
+			System.out.print("선택>>");
+			
+			int choice = Integer.parseInt(sc.nextLine());
+			
+			switch (choice) {
+			case MENU.DAILY: ddao.checkFD(); break;
+			case MENU.WEEKLY: wdao.checkFW(); break;
+			case MENU.MONTHLY: mdao.checkFM(); break;
+			case MENU.YEARLY: ydao.checkFY(); break;
+			case MENU.BUCKET: bdao.checkFB(); break;
+			}
 		}
+		
+		
 	}
 	
 	
@@ -296,32 +312,47 @@ public class ToDoOn implements MENU{
 	//취소하기
 	public void checkB () {
 		//완료된 인덱스들 보여주기
-		System.out.println("=== 완료된 인덱스 ===");
+		System.out.println();
+		System.out.println("=============== 완료된 인덱스 ==============");
+		
 		//일일
 		ddao.checkBSD();
+		System.out.println();
 		//주간
 		wdao.checkBSW();
+		System.out.println();
 		//월간
 		mdao.checkBSM();
+		System.out.println();
 		//연간
 		ydao.checkBSY();
+		System.out.println();
 		//버킷
 		bdao.checkBSB();
+		System.out.println();
 		
-		System.out.println("취소하실 인덱스를 선택하세요.");
-		System.out.println("1.일일 2.주간 3.월간 4.연간 5.버킷");
-		System.out.print("선택>>");
+		//완료된 인덱스가 없는 경우
+		if ((!ddao.dvo.listD.isEmpty())&&(!wdao.wvo.listW.isEmpty())&&(!mdao.mvo.listM.isEmpty())&&(!ydao.yvo.listY.isEmpty())&&(!bdao.bvo.listB.isEmpty())) {
+			System.out.println("========================================");
+			System.out.println();
+			System.out.println("취소하실 인덱스를 선택하세요."); 
+			System.out.println("1.일일 2.주간 3.월간 4.연간 5.버킷");
+			System.out.print("선택>>");
+			
+			int choice = Integer.parseInt(sc.nextLine());
+			
+			switch (choice) {
+			case MENU.DAILY: ddao.checkBD(); break;
+			case MENU.WEEKLY: wdao.checkBW(); break;
+			case MENU.MONTHLY: mdao.checkBM(); break;
+			case MENU.YEARLY: ydao.checkBY(); break;
+			case MENU.BUCKET: bdao.checkBB(); break;
+			}
 		
-		int choice = Integer.parseInt(sc.nextLine());
+		} 
+		System.out.println("찾으시는 내용이 없습니다.");
+		System.out.println("========================================");
 		
-		switch (choice) {
-		case MENU.DAILY: ddao.checkBD(); break;
-		case MENU.WEEKLY: wdao.checkBW(); break;
-		case MENU.MONTHLY: mdao.checkBM(); break;
-		case MENU.YEARLY: ydao.checkBY(); break;
-		case MENU.BUCKET: bdao.checkBB(); break;
-		
-		}
 	}
 	
 }

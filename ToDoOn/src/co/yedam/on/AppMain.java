@@ -24,6 +24,7 @@ public class AppMain implements MENU {
 	//시작 메서드
 	public void start() {
 		System.out.println("안녕하세요. ToDoOn입니다.");
+		System.out.println();
 		System.out.println("===============남아있는 인덱스==============");
 		
 		tdo.showAll();
@@ -39,7 +40,9 @@ public class AppMain implements MENU {
 		System.out.print("선택>>");
 			
 		choice = Integer.parseInt(sc.nextLine());
-				
+		
+		System.out.println();
+		
 		switch ( choice ) {
 		case MENU.INSERT: insert(); break;
 		case MENU.SEARCH: search(); break;

@@ -162,7 +162,7 @@ public class YearlyDAO extends DAO {
 			 for( int i = 0 ; i < (yvo.listY.size())/2 ; i++ ) {
 		        	int a = 2*i;
 		        	int b = 2*i+1;
-		        	System.out.println("일일:"+yvo.listY.get(a)+"-"+yvo.listY.get(b));
+		        	System.out.print("[연간:"+yvo.listY.get(a)+"-"+yvo.listY.get(b)+"]\t");
 			
 			 }
 		}
@@ -197,7 +197,7 @@ public class YearlyDAO extends DAO {
 				 for( int i = 0 ; i < (yvo.listY.size())/2 ; i++ ) {
 			        	int a = 2*i;
 			        	int b = 2*i+1;
-			        	System.out.println("일일:"+yvo.listY.get(a)+"-"+yvo.listY.get(b));
+			        	System.out.print("[연간:"+yvo.listY.get(a)+"-"+yvo.listY.get(b)+"]\t");
 				
 				 }
 			}

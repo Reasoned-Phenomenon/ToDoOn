@@ -163,7 +163,7 @@ public class DailyDAO extends DAO {
 			 for( int i = 0 ; i < (dvo.listD.size())/2 ; i++ ) {
 		        	int a = 2*i;
 		        	int b = 2*i+1;
-		        	System.out.println("일일:"+dvo.listD.get(a)+"-"+dvo.listD.get(b));
+		        	System.out.print("[일일:"+dvo.listD.get(a)+"-"+dvo.listD.get(b)+"]\t");
 			
 			 }
 		}
@@ -198,7 +198,7 @@ public class DailyDAO extends DAO {
 				 for( int i = 0 ; i < (dvo.listD.size())/2 ; i++ ) {
 			        	int a = 2*i;
 			        	int b = 2*i+1;
-			        	System.out.println("일일:"+dvo.listD.get(a)+"-"+dvo.listD.get(b));
+			        	System.out.print("[일일:"+dvo.listD.get(a)+"-"+dvo.listD.get(b)+"]\t");
 				
 				 }
 			}

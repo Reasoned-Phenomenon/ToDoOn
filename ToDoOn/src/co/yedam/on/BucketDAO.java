@@ -162,7 +162,7 @@ public class BucketDAO extends DAO {
 			 for( int i = 0 ; i < (bvo.listB.size())/2 ; i++ ) {
 		        	int a = 2*i;
 		        	int b = 2*i+1;
-		        	System.out.println("일일:"+bvo.listB.get(a)+"-"+bvo.listB.get(b));
+		        	System.out.print("[버킷:"+bvo.listB.get(a)+"-"+bvo.listB.get(b)+"]\t");
 			
 			 }
 		}
@@ -197,7 +197,7 @@ public class BucketDAO extends DAO {
 				 for( int i = 0 ; i < (bvo.listB.size())/2 ; i++ ) {
 			        	int a = 2*i;
 			        	int b = 2*i+1;
-			        	System.out.println("일일:"+bvo.listB.get(a)+"-"+bvo.listB.get(b));
+			        	System.out.print("[버킷:"+bvo.listB.get(a)+"-"+bvo.listB.get(b)+"]\t");
 				
 				 }
 			}

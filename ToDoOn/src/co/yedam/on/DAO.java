@@ -13,8 +13,8 @@ public class DAO {
 	Statement stmt;
 	ResultSet rs;
 
-	String user = "c##tdo";
-//	String user = "tdo";
+//	String user = "c##tdo";
+	String user = "tdo";
 	String pass = "tdo";
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 
