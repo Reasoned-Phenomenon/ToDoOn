@@ -123,11 +123,10 @@ public class ToDoOn implements MENU{
 	
 	//조회-검색(인덱스,내용)
 	public void search () {
-		System.out.println();
 		System.out.println("검색하고싶은 인덱스 또는 내용을 입력하세요.");
 		System.out.print("인덱스 또는 내용>>");
 		String look = sc.nextLine();
-		
+		System.out.println("========================================");
 		//연결
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -284,7 +283,6 @@ public class ToDoOn implements MENU{
 		if ((ddao.dvo.listD.isEmpty())&&(wdao.wvo.listW.isEmpty())&&(mdao.mvo.listM.isEmpty())&&(ydao.yvo.listY.isEmpty())&&(bdao.bvo.listB.isEmpty())) {
 			System.out.println("========================================");
 			System.out.println("찾으시는 내용이 없습니다.");
-			System.out.println();
 			System.out.println("========================================");
 			
 		} else {
@@ -293,17 +291,30 @@ public class ToDoOn implements MENU{
 			System.out.println("1.일일 2.주간 3.월간 4.연간 5.버킷");
 			System.out.print("선택>>");
 			
-			int choice = Integer.parseInt(sc.nextLine());
+			int choice=0;
 			
-			switch (choice) {
-			case MENU.DAILY: ddao.checkFD(); break;
-			case MENU.WEEKLY: wdao.checkFW(); break;
-			case MENU.MONTHLY: mdao.checkFM(); break;
-			case MENU.YEARLY: ydao.checkFY(); break;
-			case MENU.BUCKET: bdao.checkFB(); break;
-			}
+			try {
+				choice = Integer.parseInt(sc.nextLine());
+				
+				if ((choice > 5)||(choice < 1)) {
+					System.out.println("****************************************");
+					System.out.println("정확히 입력해주세요.");
+				} else {
+			
+				switch (choice) {
+				case MENU.DAILY: ddao.checkFD(); break;
+				case MENU.WEEKLY: wdao.checkFW(); break;
+				case MENU.MONTHLY: mdao.checkFM(); break;
+				case MENU.YEARLY: ydao.checkFY(); break;
+				case MENU.BUCKET: bdao.checkFB(); break;
+				}
+				
+				} 
+			}catch (Exception e) {
+				System.out.println("****************************************");
+				System.out.println("정확히 입력해주세요.");
+			} 
 		}
-		
 		
 	}
 	
@@ -339,15 +350,29 @@ public class ToDoOn implements MENU{
 			System.out.println("1.일일 2.주간 3.월간 4.연간 5.버킷");
 			System.out.print("선택>>");
 			
-			int choice = Integer.parseInt(sc.nextLine());
+			int choice=0;
 			
-			switch (choice) {
-			case MENU.DAILY: ddao.checkBD(); break;
-			case MENU.WEEKLY: wdao.checkBW(); break;
-			case MENU.MONTHLY: mdao.checkBM(); break;
-			case MENU.YEARLY: ydao.checkBY(); break;
-			case MENU.BUCKET: bdao.checkBB(); break;
-			}
+			try {
+				choice = Integer.parseInt(sc.nextLine());
+				
+				if ((choice > 5)||(choice < 1)) {
+					System.out.println("****************************************");
+					System.out.println("정확히 입력해주세요.");
+				} else {
+			
+				switch (choice) {
+				case MENU.DAILY: ddao.checkBD(); break;
+				case MENU.WEEKLY: wdao.checkBW(); break;
+				case MENU.MONTHLY: mdao.checkBM(); break;
+				case MENU.YEARLY: ydao.checkBY(); break;
+				case MENU.BUCKET: bdao.checkBB(); break;
+				}
+			
+				} 
+			}catch (Exception e) {
+				System.out.println("****************************************");
+				System.out.println("정확히 입력해주세요.");
+			} 
 		
 		} 
 		System.out.println("찾으시는 내용이 없습니다.");
