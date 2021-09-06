@@ -139,7 +139,7 @@ public class AppMain implements MENU{
     //삭제 메서드
 	public void delete() {
 		
-		tdo.showAll(); // search을 할지 고민
+		tdo.showAll();
 		
 		System.out.println("삭제하고싶은 인덱스를 선택하세요.");
 		System.out.println("1.일일 2.주간 3.월간 4.연간 5.버킷");
