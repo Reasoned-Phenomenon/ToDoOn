@@ -98,7 +98,30 @@ public class AppMain implements MENU{
 	
 	//조회 메서드
 	public void search() {
-		tdo.search();
+		
+		System.out.println("수행하실 작업을 선택하세요.");
+		System.out.println("1.검색 2.시간경과 인덱스 확인");
+		System.out.print("선택>>");
+		
+		int choice=0;
+		
+		try {
+			choice = Integer.parseInt(sc.nextLine());
+			
+			if ((choice > 2)||(choice < 1)) {
+				System.out.println("****************************************");
+				System.out.println("정확히 입력해주세요.");
+			} else {
+			switch (choice) {
+			case 1: tdo.search(); break;
+			case 2: tdo.showLapse(); break;	
+			}
+			} 
+		}catch (Exception e) {
+			System.out.println("****************************************");
+			System.out.println("정확히 입력해주세요.");
+		}
+		
 	}
 	
 	

@@ -54,7 +54,7 @@ public class ToDoOn implements MENU{
 			con = dao.connect();
 			
 			// 일일
-			sqld = "SELECT NO, MEMO_INDEX FROM daily WHERE( expiry_date > TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
+			sqld = "SELECT NO, MEMO_INDEX FROM daily WHERE( expiry_date >= TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
 			pstmt = con.prepareStatement(sqld);
 			pstmt.setString(1, now);
 			rs = pstmt.executeQuery();
@@ -66,7 +66,7 @@ public class ToDoOn implements MENU{
 			}System.out.println();
 			
 			// 주간
-			sqlw = "SELECT NO, MEMO_INDEX FROM weekly WHERE( expiry_date > TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
+			sqlw = "SELECT NO, MEMO_INDEX FROM weekly WHERE( expiry_date >= TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
 			pstmt = con.prepareStatement(sqlw);
 			pstmt.setString(1, now);
 			rs = pstmt.executeQuery();
@@ -78,7 +78,7 @@ public class ToDoOn implements MENU{
 			}System.out.println();
 
 			// 월간
-			sqlm = "SELECT NO, MEMO_INDEX FROM monthly WHERE( expiry_date > TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
+			sqlm = "SELECT NO, MEMO_INDEX FROM monthly WHERE( expiry_date >= TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
 			pstmt = con.prepareStatement(sqlm);
 			pstmt.setString(1, now);
 			rs = pstmt.executeQuery();
@@ -90,7 +90,7 @@ public class ToDoOn implements MENU{
 			}System.out.println();
 			
 			// 연간
-			sqly = "SELECT NO, MEMO_INDEX FROM yearly WHERE( expiry_date > TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
+			sqly = "SELECT NO, MEMO_INDEX FROM yearly WHERE( expiry_date >= TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
 			pstmt = con.prepareStatement(sqly);
 			pstmt.setString(1, now);
 			rs = pstmt.executeQuery();
@@ -102,7 +102,7 @@ public class ToDoOn implements MENU{
 			}System.out.println();
 			
 			// 버킷
-			sqlb = "SELECT NO, MEMO_INDEX FROM bucket WHERE( expiry_date > TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
+			sqlb = "SELECT NO, MEMO_INDEX FROM bucket WHERE( expiry_date >= TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
 			pstmt = con.prepareStatement(sqlb);
 			pstmt.setString(1, now);
 			rs = pstmt.executeQuery();
@@ -257,7 +257,98 @@ public class ToDoOn implements MENU{
         	
         }
         
+	
+	
+	public void showLapse () {
+		System.out.println();
+		System.out.println("=============== 시간이 지난 인덱스 ===============");
+		
+		// 연결
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		ResultSet rs = null;
+		String sqld = "";
+        String sqlw = "";
+        String sqlm = "";
+        String sqly = "";
+        String sqlb = "";
 
+		Date time = new Date();
+		String now = format.format(time);
+		
+		
+		try {
+			con = dao.connect();
+			
+			// 일일
+			sqld = "SELECT NO, MEMO_INDEX FROM daily WHERE( expiry_date < TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
+			pstmt = con.prepareStatement(sqld);
+			pstmt.setString(1, now);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				dvo.setNoD(rs.getInt("NO"));
+	        	dvo.setMemoIndexD(rs.getString("MEMO_INDEX"));
+	        	System.out.print("[일일:"+ dvo.getNoD() + "-" + dvo.getMemoIndexD()+"]\t");
+			}System.out.println();
+			
+			// 주간
+			sqlw = "SELECT NO, MEMO_INDEX FROM weekly WHERE( expiry_date < TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
+			pstmt = con.prepareStatement(sqlw);
+			pstmt.setString(1, now);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				wvo.setNoW(rs.getInt("NO"));
+	        	wvo.setMemoIndexW(rs.getString("MEMO_INDEX"));
+	        	System.out.print("[주간:"+ wvo.getNoW() + "-" + wvo.getMemoIndexW()+"]\t");
+			}System.out.println();
+
+			// 월간
+			sqlm = "SELECT NO, MEMO_INDEX FROM monthly WHERE( expiry_date < TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
+			pstmt = con.prepareStatement(sqlm);
+			pstmt.setString(1, now);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				mvo.setNoM(rs.getInt("NO"));
+	        	mvo.setMemoIndexM(rs.getString("MEMO_INDEX"));
+	        	System.out.print("[월간:"+ mvo.getNoM() + "-" + mvo.getMemoIndexM()+"]\t");
+			}System.out.println();
+			
+			// 연간
+			sqly = "SELECT NO, MEMO_INDEX FROM yearly WHERE( expiry_date < TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
+			pstmt = con.prepareStatement(sqly);
+			pstmt.setString(1, now);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				yvo.setNoY(rs.getInt("NO"));
+	        	yvo.setMemoIndexY(rs.getString("MEMO_INDEX"));
+	        	System.out.print("[연간:"+ yvo.getNoY() + "-" + yvo.getMemoIndexY()+"]\t");
+			}System.out.println();
+			
+			// 버킷
+			sqlb = "SELECT NO, MEMO_INDEX FROM bucket WHERE( expiry_date < TO_DATE(?,'YY/MM/DD') AND (memo_check = 0) ) ";
+			pstmt = con.prepareStatement(sqlb);
+			pstmt.setString(1, now);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				bvo.setNoB(rs.getInt("NO"));
+	        	bvo.setMemoIndexB(rs.getString("MEMO_INDEX"));
+	        	System.out.print("[버킷:"+ bvo.getNoB() + "-" + bvo.getMemoIndexB()+"]\t");
+			}System.out.println();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dao.disconnect();
+		}
+
+	}
+		
 	
 	//완료하기
 	public void checkF () {
