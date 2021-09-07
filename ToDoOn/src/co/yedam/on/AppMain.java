@@ -23,7 +23,7 @@ public class AppMain implements MENU{
 	
 	//시작 메서드
 	public void start() throws Exception{
-		System.out.println("오늘 할 것은 ON을 하기. ToDoOn입니다.");
+		System.out.println("오늘은 ON을 하자. ToDoOn입니다.");
 		System.out.println();
 		System.out.println("===============남아있는 인덱스==============");
 		tdo.showAll();
