@@ -261,7 +261,7 @@ public class ToDoOn implements MENU{
 	
 	public void showLapse () {
 		System.out.println();
-		System.out.println("=============== 시간이 지난 인덱스 ===============");
+		System.out.println("==============시간이 지난 인덱스 ==============");
 		
 		// 연결
 		Connection con = null;
@@ -345,7 +345,7 @@ public class ToDoOn implements MENU{
 			e.printStackTrace();
 		} finally {
 			dao.disconnect();
-		}
+		} System.out.println("========================================");
 
 	}
 		

@@ -69,31 +69,33 @@ public class AppMain implements MENU{
 	//입력 메서드
 	public void insert() {
 		
-		System.out.println("1.일일 2.주간 3.월간 4.연간 5.버킷");
-		System.out.print("선택>>");
-		
 		int choice=0;
+		
+		do {
+		System.out.println("0.메인메뉴 1.일일 2.주간 3.월간 4.연간 5.버킷");
+		System.out.print("선택>>");
 		
 		try {
 			choice = Integer.parseInt(sc.nextLine());
 			
-			if ((choice > 5)||(choice < 1)) {
+			if ((choice > 5)||(choice < 0)) {
 				System.out.println("****************************************");
 				System.out.println("정확히 입력해주세요.");
 			} else {
 			
 			switch ( choice ) {
-			case INSERT: ddao.insertD(); break;
-			case SEARCH: wdao.insertW(); break;
-			case UPDATE: mdao.insertM(); break;
-			case DELETE: ydao.insertY(); break;
-			case EXIT: bdao.insertB(); break;
+			case MENU.DAILY: ddao.insertD(); break;
+			case MENU.WEEKLY: wdao.insertW(); break;
+			case MENU.MONTHLY: mdao.insertM(); break;
+			case MENU.YEARLY: ydao.insertY(); break;
+			case MENU.BUCKET: bdao.insertB(); break;
 			}
 			} 
 		}catch (Exception e) {
 			System.out.println("****************************************");
 			System.out.println("정확히 입력해주세요.");
 		} 
+		} while (choice != 0); 
 	}
 	
 	
@@ -101,16 +103,17 @@ public class AppMain implements MENU{
 	//조회 메서드
 	public void search() {
 		
-		System.out.println("수행하실 작업을 선택하세요.");
-		System.out.println("1.검색 2.시간경과 인덱스 확인");
-		System.out.print("선택>>");
-		
 		int choice=0;
+		
+		do {
+		System.out.println("수행하실 작업을 선택하세요.");
+		System.out.println("0.메인메뉴 1.검색 2.시간경과 인덱스 확인");
+		System.out.print("선택>>");
 		
 		try {
 			choice = Integer.parseInt(sc.nextLine());
 			
-			if ((choice > 2)||(choice < 1)) {
+			if ((choice > 2)||(choice < 0)) {
 				System.out.println("****************************************");
 				System.out.println("정확히 입력해주세요.");
 			} else {
@@ -123,7 +126,7 @@ public class AppMain implements MENU{
 			System.out.println("****************************************");
 			System.out.println("정확히 입력해주세요.");
 		}
-		
+		}while (choice !=0);
 	}
 	
 	
@@ -131,6 +134,9 @@ public class AppMain implements MENU{
 	//수정 메서드
 	public void update() {
 		
+		int choiceT=0;
+		
+		do {
 		tdo.search();
 		
 		System.out.println("========================================");
@@ -138,12 +144,10 @@ public class AppMain implements MENU{
 		System.out.println("1.일일 2.주간 3.월간 4.연간 5.버킷");
 		System.out.print("선택>>");
 		
-		int choiceT=0;
-		
 		try {
 			choiceT = Integer.parseInt(sc.nextLine());
 			
-			if ((choiceT > 5)||(choiceT < 1)) {
+			if ((choiceT > 5)||(choiceT < 0)) {
 				System.out.println("****************************************");
 				System.out.println("정확히 입력해주세요.");
 			} else {
@@ -160,6 +164,7 @@ public class AppMain implements MENU{
 			System.out.println("****************************************");
 			System.out.println("정확히 입력해주세요.");
 		} 
+		} while (choiceT != 0);
 	}
         
 	
@@ -167,19 +172,23 @@ public class AppMain implements MENU{
     //삭제 메서드
 	public void delete() {
 		
+		int choiceT=0;
+		
+		do {
+		
 		tdo.showAll();
 		
 		System.out.println("삭제하고싶은 인덱스를 선택하세요.");
-		System.out.println("1.일일 2.주간 3.월간 4.연간 5.버킷");
+		System.out.println("0.메인메뉴 1.일일 2.주간 3.월간 4.연간 5.버킷");
 		
 		System.out.print("선택>>");
 		
-		int choiceT=0;
+		
 		
 		try {
 			choiceT = Integer.parseInt(sc.nextLine());
 			
-			if ((choiceT > 5)||(choiceT < 1)) {
+			if ((choiceT > 5)||(choiceT < 0)) {
 				System.out.println("****************************************");
 				System.out.println("정확히 입력해주세요.");
 			} else {
@@ -196,7 +205,7 @@ public class AppMain implements MENU{
 			System.out.println("****************************************");
 			System.out.println("정확히 입력해주세요.");
 		} 
-			
+		} while (choiceT != 0);
 	}
 	
 	
@@ -204,16 +213,17 @@ public class AppMain implements MENU{
 	//체크 - 완료, 취소 메서드
 	public void check () {
 		
+		int choice=0;
+		
+		do {
 		System.out.println("수행하실 작업을 선택하세요.");
 		System.out.println("1.완료 2.완료취소");
 		System.out.print("선택>>");
 		
-		int choice=0;
-		
 		try {
 			choice = Integer.parseInt(sc.nextLine());
 			
-			if ((choice > 2)||(choice < 1)) {
+			if ((choice > 2)||(choice < 0)) {
 				System.out.println("****************************************");
 				System.out.println("정확히 입력해주세요.");
 			} else {
@@ -226,7 +236,7 @@ public class AppMain implements MENU{
 			System.out.println("****************************************");
 			System.out.println("정확히 입력해주세요.");
 		} 
-			
+		} while(choice != 0);	
 	}
 	
 	

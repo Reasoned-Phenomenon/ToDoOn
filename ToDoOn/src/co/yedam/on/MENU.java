@@ -2,6 +2,7 @@ package co.yedam.on;
 
 public interface MENU {
 
+	int BACK = 0;
 	int INSERT =1;
 	int SEARCH = 2;
 	int UPDATE = 3;
@@ -15,6 +16,4 @@ public interface MENU {
 	int YEARLY = 4;
 	int BUCKET = 5;
 	
-	
-	//rename - project//////
 }
