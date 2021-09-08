@@ -123,6 +123,7 @@ public class ToDoOn implements MENU{
 	
 	//조회-검색(인덱스,내용)
 	public void search () {
+		
 		System.out.println("검색하고싶은 인덱스 또는 내용을 입력하세요.");
 		System.out.print("인덱스 또는 내용>>");
 		String look = sc.nextLine();
@@ -471,36 +472,6 @@ public class ToDoOn implements MENU{
 		}
 		
 	}
-	
-
-	
-//	public void esc () {
-//		
-//		int choiceI=0;
-//		// 1 : 특수문자가 포함되어 있으면
-//		// 2 : 특수문자가 포함되어있지 않으면
-//		if (**판별식**) {
-//		choiceI = 1;
-//		} else { choiceI = 2; }
-//			
-//		switch (choiceI) {
-//		//입력할지 물어보기
-//		case 1: 
-//		System.out.println("정말 입력하시겠습니까?");
-//		System.out.println("1.예 2.아니오");
-//		System.out.print("선택>>");
-//		
-//		int select = Integer.parseInt(sc.nextLine());
-//			
-//		if (select == 2 ) {
-//		System.out.println("취소됐습니다.");
-//		break;
-//		} 
-//
-//		//그냥진행
-//		case 2: break;
-//		}
-//}
 	
 	
 	

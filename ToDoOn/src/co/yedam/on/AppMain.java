@@ -137,28 +137,29 @@ public class AppMain implements MENU{
 		
 		int choiceT=0;
 		
+		
 		do {
-		tdo.search();
 		
 		System.out.println("========================================");
 		System.out.println("수정하고싶은 인덱스를 선택하세요.");
-		System.out.println("1.일일 2.주간 3.월간 4.연간 5.버킷");
+		System.out.println("0.메인메뉴 1.일일 2.주간 3.월간 4.연간 5.버킷 6.검색");
 		System.out.print("선택>>");
 		
 		try {
 			choiceT = Integer.parseInt(sc.nextLine());
 			
-			if ((choiceT > 5)||(choiceT < 0)) {
+			if ((choiceT > 6)||(choiceT < 0)) {
 				System.out.println("****************************************");
 				System.out.println("정확히 입력해주세요.");
 			} else {
 		
 			switch (choiceT) {
 			case MENU.DAILY: ddao.updateD(); break;
-			case MENU.WEEKLY: wdao.updateW();break;
-			case MENU.MONTHLY: mdao.updateM();break;
-			case MENU.YEARLY: ydao.updateY();break;
-			case MENU.BUCKET: bdao.updateB();break;
+			case MENU.WEEKLY: wdao.updateW(); break;
+			case MENU.MONTHLY: mdao.updateM(); break;
+			case MENU.YEARLY: ydao.updateY(); break;
+			case MENU.BUCKET: bdao.updateB(); break;
+			case 6:tdo.search(); break;
 			} 
 			} 
 		}catch (Exception e) {
@@ -178,13 +179,11 @@ public class AppMain implements MENU{
 		do {
 		
 		tdo.showAll();
-		
+		System.out.println("========================================");
 		System.out.println("삭제하고싶은 인덱스를 선택하세요.");
 		System.out.println("0.메인메뉴 1.일일 2.주간 3.월간 4.연간 5.버킷");
 		
 		System.out.print("선택>>");
-		
-		
 		
 		try {
 			choiceT = Integer.parseInt(sc.nextLine());
@@ -205,8 +204,9 @@ public class AppMain implements MENU{
 		}catch (Exception e) {
 			System.out.println("****************************************");
 			System.out.println("정확히 입력해주세요.");
+		} System.out.println("========================================");
 		} 
-		} while (choiceT != 0);
+		while (choiceT != 0);
 	}
 	
 	
@@ -217,8 +217,9 @@ public class AppMain implements MENU{
 		int choice=0;
 		
 		do {
+		System.out.println("========================================");
 		System.out.println("수행하실 작업을 선택하세요.");
-		System.out.println("1.완료 2.완료취소");
+		System.out.println("0.메인메뉴 1.완료 2.완료취소");
 		System.out.print("선택>>");
 		
 		try {

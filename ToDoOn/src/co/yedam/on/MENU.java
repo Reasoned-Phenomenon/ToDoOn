@@ -16,7 +16,4 @@ public interface MENU {
 	int YEARLY = 4;
 	int BUCKET = 5;
 	
-	int YES = 1;
-	int NO = 2;
-	
 }
