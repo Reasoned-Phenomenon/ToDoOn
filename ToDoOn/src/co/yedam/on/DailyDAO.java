@@ -14,13 +14,17 @@ public class DailyDAO extends DAO {
 	
 	//일일
 	//no. / 입력날짜 / 만기날짜 / 완료날짜 / 인덱스 / 내용
-	public void insertD () {
+	public void insertD () throws Exception {
+		
 		System.out.println("다음을 입력하세요.");
+		
 		System.out.print("인덱스>>");
 		String index = sc.nextLine();
 		
+		
 		System.out.print("내용>>");
 		String content = sc.nextLine();
+		
 		
 		System.out.print("만기날짜(YY/MM/DD)>>");
 		String expireDate = sc.nextLine();
@@ -29,33 +33,31 @@ public class DailyDAO extends DAO {
 		dvo.setMemoContentD(content);
 		dvo.setExpiryDateD(expireDate);
 		
-		//연결
-		int rowCount = 0;
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        String sql = "";
- 
-        try {
-            con=dao.connect();
-            sql = "INSERT INTO daily(no,input_Date,expiry_Date,finish_Date,memo_Index,memo_Content,memo_check) " + " VALUES(MEMO_SEQ.NEXTVAL,?,?,null,?,?,0)";
-            pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, dvo.getInputDateD());
-            pstmt.setString(2, dvo.getExpiryDateD());
-            pstmt.setString(3, dvo.memoIndexD);
-            pstmt.setString(4, dvo.memoContentD);
-            
-            rowCount = pstmt.executeUpdate();
-            
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            dao.disconnect();
-        }
-        System.out.println(rowCount+"건 입력완료");
-	}
-	
-	
+			//연결
+			int rowCount = 0;
+	        Connection con = null;
+	        PreparedStatement pstmt = null;
+	        String sql = "";
+	 
+	        try {
+	            con=dao.connect();
+	            sql = "INSERT INTO daily(no,input_Date,expiry_Date,finish_Date,memo_Index,memo_Content,memo_check) " + " VALUES(MEMO_SEQ.NEXTVAL,?,?,null,?,?,0)";
+	            pstmt = con.prepareStatement(sql);
+	            pstmt.setString(1, dvo.getInputDateD());
+	            pstmt.setString(2, dvo.getExpiryDateD());
+	            pstmt.setString(3, dvo.memoIndexD);
+	            pstmt.setString(4, dvo.memoContentD);
+	            
+	            rowCount = pstmt.executeUpdate();
+	            
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            dao.disconnect();
+	        }
+	        System.out.println(rowCount+"건 입력완료");
+		}
+			
 	
 	
 	//인덱스로 검색->수정
@@ -68,10 +70,11 @@ public class DailyDAO extends DAO {
 		System.out.println("1.인덱스 2.내용 3.만기날짜(YY/MM/DD)");
 		System.out.print("선택>>");
 		
-		int choiceC = Integer.parseInt(sc.nextLine());
 		String beforeColumn = null;
+		int choice = Integer.parseInt(sc.nextLine());
 		
-		switch (choiceC) {
+		
+		switch (choice) {
 		case 1: beforeColumn = "memo_index"; break;
 		case 2: beforeColumn = "memo_content"; break;
 		case 3: beforeColumn = "expiry_date"; break;

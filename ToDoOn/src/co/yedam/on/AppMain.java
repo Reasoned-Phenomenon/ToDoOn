@@ -72,6 +72,7 @@ public class AppMain implements MENU{
 		int choice=0;
 		
 		do {
+		System.out.println("========================================");
 		System.out.println("0.메인메뉴 1.일일 2.주간 3.월간 4.연간 5.버킷");
 		System.out.print("선택>>");
 		
