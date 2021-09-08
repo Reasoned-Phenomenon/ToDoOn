@@ -434,7 +434,7 @@ public class ToDoOn implements MENU{
 		System.out.println();
 		
 		//완료된 인덱스가 없는 경우
-		if ((!ddao.dvo.listD.isEmpty())&&(!wdao.wvo.listW.isEmpty())&&(!mdao.mvo.listM.isEmpty())&&(!ydao.yvo.listY.isEmpty())&&(!bdao.bvo.listB.isEmpty())) {
+		if ((!ddao.dvo.listD.isEmpty())||(!wdao.wvo.listW.isEmpty())||(!mdao.mvo.listM.isEmpty())||(!ydao.yvo.listY.isEmpty())||(!bdao.bvo.listB.isEmpty())) {
 			System.out.println("========================================");
 			System.out.println();
 			System.out.println("취소하실 인덱스를 선택하세요."); 
@@ -465,9 +465,10 @@ public class ToDoOn implements MENU{
 				System.out.println("정확히 입력해주세요.");
 			} 
 		
-		} 
+		} else {
 		System.out.println("찾으시는 내용이 없습니다.");
 		System.out.println("========================================");
+		}
 		
 	}
 	

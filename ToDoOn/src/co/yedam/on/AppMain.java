@@ -23,7 +23,7 @@ public class AppMain implements MENU{
 	
 	//시작 메서드
 	public void start() throws Exception{
-		System.out.println("오늘은 ON을 하자. ToDoOn입니다.");
+		System.out.println("O-Neul은 ON을 하자. ToDoOn입니다.");
 		System.out.println();
 		System.out.println("===============남아있는 인덱스==============");
 		tdo.showAll();
@@ -62,7 +62,8 @@ public class AppMain implements MENU{
 			} 
 			} 
 		}while(choice != 6);
-}
+	}
+	
 	
 	
 	//입력 메서드
@@ -96,6 +97,7 @@ public class AppMain implements MENU{
 	}
 	
 	
+	
 	//조회 메서드
 	public void search() {
 		
@@ -123,6 +125,7 @@ public class AppMain implements MENU{
 		}
 		
 	}
+	
 	
 	
 	//수정 메서드
@@ -159,6 +162,8 @@ public class AppMain implements MENU{
 		} 
 	}
         
+	
+	
     //삭제 메서드
 	public void delete() {
 		
@@ -194,6 +199,8 @@ public class AppMain implements MENU{
 			
 	}
 	
+	
+	
 	//체크 - 완료, 취소 메서드
 	public void check () {
 		
@@ -221,6 +228,7 @@ public class AppMain implements MENU{
 		} 
 			
 	}
+	
 	
 	
 	//종료 메서드
